@@ -1,6 +1,6 @@
 <template>
     <div class="modal fade" id="modalRequest">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" v-on:click.prevent='close'>
@@ -12,9 +12,25 @@
                 </div>
                 <div class="modal-body row">
                     <div class="col-md-12">
-                        <form>
-                            
-                        </form>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Nick</th>
+                                    <th>Dolares</th>
+                                    <th>Porcentaje</th>
+                                    <th>TRM</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                             	<tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr> 
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="modal-footer">

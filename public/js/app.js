@@ -5320,12 +5320,10 @@ __webpack_require__.r(__webpack_exports__);
     addModel: function addModel() {
       var _this = this;
 
-      var urlDetail = 'model';
-
-      if (_this.info.sede_id == '') {
-        toastr__WEBPACK_IMPORTED_MODULE_1___default.a.error('La sede es obligatoria');
-        return;
-      }
+      var urlDetail = 'model'; // if(_this.info.sede_id == ''){
+      //     toastr.error('La sede es obligatoria');
+      //     return;
+      // }
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(urlDetail, _this.info).then(function (response) {
         _this.info = {
@@ -5676,6 +5674,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var toastr__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(toastr__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
 /* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_2__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -48737,65 +48751,7 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-10 offset-1 col-md-10 offset-md-1" },
-                  [
-                    _c("label", { attrs: { for: "sede_id" } }, [
-                      _vm._v("Sede")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.info.sede_id,
-                            expression: "info.sede_id"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { name: "sede_id" },
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.info,
-                              "sede_id",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          }
-                        }
-                      },
-                      [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("--Seleccione una opción--")
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.arraySedes, function(sede, index) {
-                          return _c("option", {
-                            domProps: {
-                              value: sede.id,
-                              textContent: _vm._s(sede.name)
-                            }
-                          })
-                        })
-                      ],
-                      2
-                    )
-                  ]
-                )
+                _vm._m(1)
               ])
             ])
           ]),
@@ -48832,6 +48788,18 @@ var staticRenderFns = [
       },
       [_c("h3", [_vm._v("Crear Modelo")])]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-10 offset-1 col-md-10 offset-md-1" }, [
+      _c("label", { attrs: { for: "sede_id" } }, [_vm._v("Sede")]),
+      _vm._v(" "),
+      _c("select", [
+        _c("option", { attrs: { value: "1" } }, [_vm._v("Centro")])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -49400,7 +49368,7 @@ var render = function() {
     "div",
     { staticClass: "modal fade", attrs: { id: "modalRequest" } },
     [
-      _c("div", { staticClass: "modal-dialog" }, [
+      _c("div", { staticClass: "modal-dialog modal-xl" }, [
         _c("div", { staticClass: "modal-content" }, [
           _c("div", { staticClass: "modal-header" }, [
             _c(
@@ -49461,7 +49429,33 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-body row" }, [
-      _c("div", { staticClass: "col-md-12" }, [_c("form")])
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("table", { staticClass: "table table-striped" }, [
+          _c("thead", [
+            _c("tr", [
+              _c("th", [_vm._v("Nick")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Dolares")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Porcentaje")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("TRM")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tbody", [
+            _c("tr", [
+              _c("td"),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td")
+            ])
+          ])
+        ])
+      ])
     ])
   }
 ]
