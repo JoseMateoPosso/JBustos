@@ -5320,10 +5320,12 @@ __webpack_require__.r(__webpack_exports__);
     addModel: function addModel() {
       var _this = this;
 
-      var urlDetail = 'model'; // if(_this.info.sede_id == ''){
-      //     toastr.error('La sede es obligatoria');
-      //     return;
-      // }
+      var urlDetail = 'model';
+
+      if (_this.info.sede_id == '') {
+        toastr__WEBPACK_IMPORTED_MODULE_1___default.a.error('La sede es obligatoria');
+        return;
+      }
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(urlDetail, _this.info).then(function (response) {
         _this.info = {
@@ -48751,7 +48753,65 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _vm._m(1)
+                _c(
+                  "div",
+                  { staticClass: "col-10 offset-1 col-md-10 offset-md-1" },
+                  [
+                    _c("label", { attrs: { for: "sede_id" } }, [
+                      _vm._v("Sede")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.info.sede_id,
+                            expression: "info.sede_id"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { name: "sede_id" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.info,
+                              "sede_id",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v("--Seleccione una opción--")
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.arraySedes, function(sede, index) {
+                          return _c("option", {
+                            domProps: {
+                              value: sede.id,
+                              textContent: _vm._s(sede.name)
+                            }
+                          })
+                        })
+                      ],
+                      2
+                    )
+                  ]
+                )
               ])
             ])
           ]),
@@ -48788,18 +48848,6 @@ var staticRenderFns = [
       },
       [_c("h3", [_vm._v("Crear Modelo")])]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-10 offset-1 col-md-10 offset-md-1" }, [
-      _c("label", { attrs: { for: "sede_id" } }, [_vm._v("Sede")]),
-      _vm._v(" "),
-      _c("select", [
-        _c("option", { attrs: { value: "1" } }, [_vm._v("Centro")])
-      ])
-    ])
   }
 ]
 render._withStripped = true
@@ -49433,13 +49481,13 @@ var staticRenderFns = [
         _c("table", { staticClass: "table table-striped" }, [
           _c("thead", [
             _c("tr", [
+              _c("th", [_vm._v("#")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Observación")]),
+              _vm._v(" "),
               _c("th", [_vm._v("Nick")]),
               _vm._v(" "),
-              _c("th", [_vm._v("Dolares")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Porcentaje")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("TRM")])
+              _c("th", [_vm._v("Sede")])
             ])
           ]),
           _vm._v(" "),

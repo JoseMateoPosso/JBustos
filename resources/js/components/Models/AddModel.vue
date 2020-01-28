@@ -39,9 +39,9 @@
         					</div>
                             <div class="col-10 offset-1 col-md-10 offset-md-1">
                                 <label for="sede_id">Sede</label>
-                               
-                                <select>
-                                    <option value="1">Centro</option>
+                                <select name="sede_id" class="form-control" v-model="info.sede_id">
+                                    <option value="">--Seleccione una opción--</option>
+                                    <option v-for="(sede, index) in arraySedes" :value="sede.id" v-text="sede.name"></option>
                                 </select>
                             </div>
         				</form>
@@ -97,10 +97,10 @@
             	var _this = this;
                 var urlDetail = 'model';
 
-                // if(_this.info.sede_id == ''){
-                //     toastr.error('La sede es obligatoria');
-                //     return;
-                // }
+                if(_this.info.sede_id == ''){
+                    toastr.error('La sede es obligatoria');
+                    return;
+                }
 
                 axios.post(urlDetail,_this.info).then(response => {
                     _this.info = {

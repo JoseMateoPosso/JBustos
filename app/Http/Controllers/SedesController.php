@@ -16,7 +16,7 @@ class SedesController extends Controller
      */
     public function index()
     {
-        $sedes = Sedes::where('status_id', 2)->get();
+        $sedes = Sedes::where('status_id', 1)->get();
         return $sedes;
     }
 

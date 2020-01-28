@@ -15,10 +15,10 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th>#</th>
+                                    <th>Observación</th>
                                     <th>Nick</th>
-                                    <th>Dolares</th>
-                                    <th>Porcentaje</th>
-                                    <th>TRM</th>
+                                    <th>Sede</th>
                                     
                                 </tr>
                             </thead>
