@@ -1,0 +1,21 @@
+$imgpath: "images/";
+
+#loginAdmin{
+	background-image: url(#{$imgpath}bgLogin.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+}
+
+.container{
+	margin-right: unset !important;
+}
+
+.loginPanel{
+	margin-top: 14%;
+}
+
+.card{
+	background-color: #ffffff46
+}
