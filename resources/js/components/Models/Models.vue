@@ -51,7 +51,8 @@
                 <model-addForm @saved="hideAddForm"></model-addForm>                       
                 <model-ediForm :info="info" @updated="hideEditForm"></model-ediForm>
                 <sale-uploadForm></sale-uploadForm>  
-                <liquidate></liquidate>                   
+                <liquidate></liquidate> 
+                <model-requestModel @click="hideRequest"></model-requestModel>                  
 			</div>
 		</div>
 	</div>
@@ -106,6 +107,10 @@
 
             showRequest:()=>{
                 $('#modalRequest').modal('show');
+            },
+            
+            hideRequest:() => {
+                $('#modalRequest').modal('hide');
             },
             
             hideAddForm: function(){

@@ -5557,6 +5557,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -5605,6 +5606,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     showRequest: function showRequest() {
       $('#modalRequest').modal('show');
+    },
+    hideRequest: function hideRequest() {
+      $('#modalRequest').modal('hide');
     },
     hideAddForm: function hideAddForm() {
       this.getModels();
@@ -5700,83 +5704,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['info'],
-  data: function data() {
-    return {
-      arraySedes: [],
-      isParent: false
-    };
-  },
-  created: function created() {
-    this.getSedes();
-  },
   methods: {
-    getSedes: function getSedes() {
-      var _this = this;
-
-      var urlDetail = 'sede';
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlDetail).then(function (response) {
-        _this.arraySedes = response.data;
-      })["catch"](function (error) {
-        console.log(error);
-        toastr__WEBPACK_IMPORTED_MODULE_1___default.a.error('No se pudo cargar la información');
-      });
-    },
-    editModel: function editModel() {
-      var _this = this;
-
-      var urlDetail = 'model/' + _this.info.id;
-
-      if (_this.info.sede_id == '') {
-        toastr__WEBPACK_IMPORTED_MODULE_1___default.a.error('La sede es obligatoria');
-        return;
-      }
-
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(urlDetail, _this.info).then(function (response) {
-        toastr__WEBPACK_IMPORTED_MODULE_1___default.a.success('Modelo actualizado satisfactoriamente');
-
-        _this.$emit('updated');
-      })["catch"](function (error) {
-        console.log(error);
-        toastr__WEBPACK_IMPORTED_MODULE_1___default.a.error('No se pudo cargar la información');
-      });
-    },
     close: function close() {
-      $('#modelEdit').modal('hide');
+      $('#modalRequest').modal('hide');
     }
   }
 });
@@ -49407,7 +49341,9 @@ var render = function() {
             _vm._v(" "),
             _c("sale-uploadForm"),
             _vm._v(" "),
-            _c("liquidate")
+            _c("liquidate"),
+            _vm._v(" "),
+            _c("model-requestModel", { on: { click: _vm.hideRequest } })
           ],
           1
         )
@@ -49485,279 +49421,7 @@ var render = function() {
             _vm._m(0)
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "modal-body row" }, [
-            _c("div", { staticClass: "col-md-12" }, [
-              _c("form", [
-                _c(
-                  "div",
-                  { staticClass: "col-10 offset-1 col-md-10 offset-md-1" },
-                  [
-                    _c("label", { attrs: { for: "name" } }, [
-                      _vm._v("Nombres")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.info.name,
-                          expression: "info.name"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text", name: "name", required: "" },
-                      domProps: { value: _vm.info.name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.info, "name", $event.target.value)
-                        }
-                      }
-                    })
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-10 offset-1 col-md-10 offset-md-1" },
-                  [
-                    _c("label", { attrs: { for: "lastname" } }, [
-                      _vm._v("Apellidos")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.info.lastname,
-                          expression: "info.lastname"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text", name: "lastname", required: "" },
-                      domProps: { value: _vm.info.lastname },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.info, "lastname", $event.target.value)
-                        }
-                      }
-                    })
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-10 offset-1 col-md-10 offset-md-1" },
-                  [
-                    _c("label", { attrs: { for: "identification" } }, [
-                      _vm._v("Identificación")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.info.identification,
-                          expression: "info.identification"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        name: "identification",
-                        required: ""
-                      },
-                      domProps: { value: _vm.info.identification },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.info,
-                            "identification",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-10 offset-1 col-md-10 offset-md-1" },
-                  [
-                    _c("label", { attrs: { for: "email" } }, [
-                      _vm._v("Correo")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.info.email,
-                          expression: "info.email"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text", name: "email", required: "" },
-                      domProps: { value: _vm.info.email },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.info, "email", $event.target.value)
-                        }
-                      }
-                    })
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-10 offset-1 col-md-10 offset-md-1" },
-                  [
-                    _c("label", { attrs: { for: "cellphone" } }, [
-                      _vm._v("Celular")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.info.cellphone,
-                          expression: "info.cellphone"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text", name: "cellphone" },
-                      domProps: { value: _vm.info.cellphone },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.info, "cellphone", $event.target.value)
-                        }
-                      }
-                    })
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-10 offset-1 col-md-10 offset-md-1" },
-                  [
-                    _c("label", { attrs: { for: "admission_date" } }, [
-                      _vm._v("Fecha ingreso")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.info.admission_date,
-                          expression: "info.admission_date"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "date",
-                        name: "admission_date",
-                        required: ""
-                      },
-                      domProps: { value: _vm.info.admission_date },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.info,
-                            "admission_date",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-10 offset-1 col-md-10 offset-md-1" },
-                  [
-                    _c("label", { attrs: { for: "sede_id" } }, [
-                      _vm._v("Sede")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.info.sede_id,
-                            expression: "info.sede_id"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { name: "sede_id" },
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.info,
-                              "sede_id",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          }
-                        }
-                      },
-                      [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("--Seleccione una opción--")
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.arraySedes, function(sede, index) {
-                          return _c("option", {
-                            domProps: {
-                              value: sede.id,
-                              textContent: _vm._s(sede.name)
-                            }
-                          })
-                        })
-                      ],
-                      2
-                    )
-                  ]
-                )
-              ])
-            ])
-          ]),
+          _vm._m(1),
           _vm._v(" "),
           _c("div", { staticClass: "modal-footer" }, [
             _c("div", { staticClass: "col-md-8 offset-md-2 col-10 offset-1" }, [
@@ -49789,8 +49453,16 @@ var staticRenderFns = [
         staticClass:
           "col-md-12 col-md-offset-0 col-xs-8 col-xs-offset-2 text-center"
       },
-      [_c("h3", [_vm._v("Editar Modelo")])]
+      [_c("h3", [_vm._v("Solicitudes")])]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-body row" }, [
+      _c("div", { staticClass: "col-md-12" }, [_c("form")])
+    ])
   }
 ]
 render._withStripped = true
