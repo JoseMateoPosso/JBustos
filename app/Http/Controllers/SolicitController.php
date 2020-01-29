@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Request;
+use App\Solicit;
 use Illuminate\Http\Request;
 
-class RequestController extends Controller
+class SolicitController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,9 @@ class RequestController extends Controller
      */
     public function index()
     {
-        //
+        $models = Solicit::get();
+        
+        return json_encode($models);
     }
 
     /**
@@ -67,7 +69,7 @@ class RequestController extends Controller
      * @param  \App\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Request $request)
+    public function update(Request $request)
     {
         //
     }

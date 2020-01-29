@@ -7,7 +7,7 @@
 	                <a href="#" class="btn btn-info btn-md" title="Nueva" v-on:click.prevent="showAddForm">Nueva Modelo</a>
                     <a href="#" class="btn btn-info btn-md" title="Subir Ventas" v-on:click.prevent="showUploadForm">Subir Ventas</a>
                     <a href="#" class="btn btn-info btn-md" title="Liquidar" v-on:click.prevent="showLiquidate">Liquidar</a>
-                    <a href="#" class="btn btn-info btn-md" title="Solicitudes" v-on:click.prevent="showRequest">Solicitudes</a>
+                    <a href="#" class="btn btn-info btn-md" title="Solicitudes" v-on:click.prevent="showRequest" @click="getRequestList()">Solicitudes</a>
 	            </div>
 	        </div>
 	        <div class="col-md-12 col-xs-12 col-lg-12">
@@ -52,7 +52,7 @@
                 <model-ediForm :info="info" @updated="hideEditForm"></model-ediForm>
                 <sale-uploadForm></sale-uploadForm>  
                 <liquidate></liquidate> 
-                <model-requestModel @click="hideRequest"></model-requestModel>                  
+                <model-requestModel :arrayRequest="arrayRequest" @click="hideRequest"></model-requestModel>                  
 			</div>
 		</div>
 	</div>
@@ -87,6 +87,7 @@
                     'sede_id'           :'',
                 },
                 arrayModelos: [],
+                arrayRequest : [],
                 modelIdSelected: '',
             }
         },
@@ -103,6 +104,16 @@
                     console.log(error);
                     toastr.error('No se pudo cargar la información');
                 });    
+            },
+
+            getRequestList: function () {
+                var _this = this;
+                var urlDetail = 'requestList';
+                axios.get(urlDetail).then(response => {
+                    _this.arrayRequest = response.data; 
+                }).catch(function(error){
+                    toastr.error('Error al cargar los datos.')
+                });
             },
 
             showRequest:()=>{

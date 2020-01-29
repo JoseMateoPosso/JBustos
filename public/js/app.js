@@ -5586,6 +5586,7 @@ __webpack_require__.r(__webpack_exports__);
         'sede_id': ''
       },
       arrayModelos: [],
+      arrayRequest: [],
       modelIdSelected: ''
     };
   },
@@ -5602,6 +5603,16 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
         toastr__WEBPACK_IMPORTED_MODULE_1___default.a.error('No se pudo cargar la información');
+      });
+    },
+    getRequestList: function getRequestList() {
+      var _this = this;
+
+      var urlDetail = 'requestList';
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlDetail).then(function (response) {
+        _this.arrayRequest = response.data;
+      })["catch"](function (error) {
+        toastr__WEBPACK_IMPORTED_MODULE_1___default.a.error('Error al cargar los datos.');
       });
     },
     showRequest: function showRequest() {
@@ -5724,6 +5735,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['arrayRequest'],
   methods: {
     close: function close() {
       $('#modalRequest').modal('hide');
@@ -49278,10 +49290,15 @@ var render = function() {
                 staticClass: "btn btn-info btn-md",
                 attrs: { href: "#", title: "Solicitudes" },
                 on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.showRequest($event)
-                  }
+                  click: [
+                    function($event) {
+                      $event.preventDefault()
+                      return _vm.showRequest($event)
+                    },
+                    function($event) {
+                      return _vm.getRequestList()
+                    }
+                  ]
                 }
               },
               [_vm._v("Solicitudes")]
@@ -49359,7 +49376,10 @@ var render = function() {
             _vm._v(" "),
             _c("liquidate"),
             _vm._v(" "),
-            _c("model-requestModel", { on: { click: _vm.hideRequest } })
+            _c("model-requestModel", {
+              attrs: { arrayRequest: _vm.arrayRequest },
+              on: { click: _vm.hideRequest }
+            })
           ],
           1
         )
@@ -49437,7 +49457,34 @@ var render = function() {
             _vm._m(0)
           ]),
           _vm._v(" "),
-          _vm._m(1),
+          _c("div", { staticClass: "modal-body row" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("table", { staticClass: "table table-striped" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("tbody", [
+                  _c(
+                    "tr",
+                    [
+                      _vm._l(_vm.arrayRequest, function(sede, index) {
+                        return _c("td", {
+                          attrs: { value: sede.id },
+                          domProps: { textContent: _vm._s(sede.id) }
+                        })
+                      }),
+                      _vm._v(" "),
+                      _c("td"),
+                      _vm._v(" "),
+                      _c("td"),
+                      _vm._v(" "),
+                      _c("td")
+                    ],
+                    2
+                  )
+                ])
+              ])
+            ])
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "modal-footer" }, [
             _c("div", { staticClass: "col-md-8 offset-md-2 col-10 offset-1" }, [
@@ -49476,33 +49523,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-body row" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("table", { staticClass: "table table-striped" }, [
-          _c("thead", [
-            _c("tr", [
-              _c("th", [_vm._v("#")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Observación")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Nick")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Sede")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tbody", [
-            _c("tr", [
-              _c("td"),
-              _vm._v(" "),
-              _c("td"),
-              _vm._v(" "),
-              _c("td"),
-              _vm._v(" "),
-              _c("td")
-            ])
-          ])
-        ])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Observación")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nick")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Sede")])
       ])
     ])
   }

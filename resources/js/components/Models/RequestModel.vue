@@ -24,7 +24,7 @@
                             </thead>
                             <tbody>
                              	<tr>
-                                    <td></td>
+                                    <td v-for="(sede, index) in arrayRequest" :value="sede.id" v-text="sede.id"></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
@@ -48,11 +48,12 @@
     import swal from 'sweetalert';
 
     export default {
+        props:['arrayRequest'],
         methods:{
             close:() => {
                 $('#modalRequest').modal('hide');
-            },          
-        }       
+            },                    
+        },       
     };
 </script>
 <style>

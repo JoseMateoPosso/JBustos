@@ -79,5 +79,7 @@ Route::group(['middleware' => 'auth'], function () {
   Route::post('/basicinformationbyc', 'BasicInformationController@basicinformationbyc');
   Route::get('/ilquidarT', 'SalesConsolidateController@Liquidar')->name('liquidar');
 
+  Route::resource('requestList', 'SolicitController', ['except' => ['show']]);
 
+	
 });
