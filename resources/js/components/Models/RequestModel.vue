@@ -14,20 +14,22 @@
                     <div class="col-md-12">
                         <table class="table table-striped">
                             <thead>
-                                <tr>
+                                <tr align="center">
                                     <th>#</th>
                                     <th>Observación</th>
                                     <th>Nick</th>
                                     <th>Sede</th>
+                                    <th>Estado</th>
                                     
                                 </tr>
                             </thead>
                             <tbody>
-                             	<tr>
-                                    <td v-for="(sede, index) in arrayRequest" :value="sede.id" v-text="sede.id"></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                             	<tr v-for="(solicit, index) in arrayRequest" align="center">
+                                    <td v-text="solicit.id"></td>
+                                    <td v-text="solicit.id"></td>
+                                    <td v-text="solicit.nickname_orig"></td>
+                                    <td v-text="solicit.status_id"></td>
+                                    <td v-text="solicit.status_id"></td>
                                 </tr> 
                             </tbody>
                         </table>

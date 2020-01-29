@@ -5731,6 +5731,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -49462,26 +49464,33 @@ var render = function() {
               _c("table", { staticClass: "table table-striped" }, [
                 _vm._m(1),
                 _vm._v(" "),
-                _c("tbody", [
-                  _c(
-                    "tr",
-                    [
-                      _vm._l(_vm.arrayRequest, function(sede, index) {
-                        return _c("td", {
-                          attrs: { value: sede.id },
-                          domProps: { textContent: _vm._s(sede.id) }
-                        })
+                _c(
+                  "tbody",
+                  _vm._l(_vm.arrayRequest, function(solicit, index) {
+                    return _c("tr", { attrs: { align: "center" } }, [
+                      _c("td", {
+                        domProps: { textContent: _vm._s(solicit.id) }
                       }),
                       _vm._v(" "),
-                      _c("td"),
+                      _c("td", {
+                        domProps: { textContent: _vm._s(solicit.id) }
+                      }),
                       _vm._v(" "),
-                      _c("td"),
+                      _c("td", {
+                        domProps: { textContent: _vm._s(solicit.nickname_orig) }
+                      }),
                       _vm._v(" "),
-                      _c("td")
-                    ],
-                    2
-                  )
-                ])
+                      _c("td", {
+                        domProps: { textContent: _vm._s(solicit.status_id) }
+                      }),
+                      _vm._v(" "),
+                      _c("td", {
+                        domProps: { textContent: _vm._s(solicit.status_id) }
+                      })
+                    ])
+                  }),
+                  0
+                )
               ])
             ])
           ]),
@@ -49524,14 +49533,16 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("thead", [
-      _c("tr", [
+      _c("tr", { attrs: { align: "center" } }, [
         _c("th", [_vm._v("#")]),
         _vm._v(" "),
         _c("th", [_vm._v("Observación")]),
         _vm._v(" "),
         _c("th", [_vm._v("Nick")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Sede")])
+        _c("th", [_vm._v("Sede")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Estado")])
       ])
     ])
   }
