@@ -14,7 +14,9 @@ class SolicitController extends Controller
      */
     public function index()
     {
-        $models = Solicit::get();
+        $models = Solicit::select('requests.*', 's.description')->join('statuses as s', 's.id', 'requests.status_id')->get();
+       // $models = Solicit::select('requests.*', 's.description')->join('statuses as s', 's.id', 'requests.status_id')->get();
+
         
         return json_encode($models);
     }

@@ -29,7 +29,7 @@
                                     <td v-text="solicit.id"></td>
                                     <td v-text="solicit.nickname_orig"></td>
                                     <td v-text="solicit.status_id"></td>
-                                    <td v-text="solicit.status_id"></td>
+                                    <td v-text="solicit.description"></td>
                                 </tr> 
                             </tbody>
                         </table>

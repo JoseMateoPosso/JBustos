@@ -49485,7 +49485,7 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _c("td", {
-                        domProps: { textContent: _vm._s(solicit.status_id) }
+                        domProps: { textContent: _vm._s(solicit.description) }
                       })
                     ])
                   }),
