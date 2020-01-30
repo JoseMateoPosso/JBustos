@@ -5733,14 +5733,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['arrayRequest'],
+  props: ["arrayRequest"],
+  data: function data() {
+    return {
+      options: [{
+        text: "Registrada",
+        value: 6
+      }, {
+        text: "En proceso",
+        value: 7
+      }, {
+        text: "Actualizada",
+        value: 8
+      }, {
+        text: "Solicitud de cambios",
+        value: 9
+      }, {
+        text: "Finalizada",
+        value: 10
+      }, {
+        text: "Rechazada",
+        value: 11
+      }]
+    };
+  },
   methods: {
     close: function close() {
-      $('#modalRequest').modal('hide');
+      $("#modalRequest").modal("hide");
     }
   }
 });
@@ -10736,7 +10773,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#modelslogic{\n    color: black;\n}\n#regVent{\n    color: black;\n}\n", ""]);
+exports.push([module.i, "\n#modelslogic {\r\n  color: black;\n}\n#regVent {\r\n  color: black;\n}\r\n", ""]);
 
 // exports
 
@@ -49469,24 +49506,57 @@ var render = function() {
                   _vm._l(_vm.arrayRequest, function(solicit, index) {
                     return _c("tr", { attrs: { align: "center" } }, [
                       _c("td", {
-                        domProps: { textContent: _vm._s(solicit.id) }
-                      }),
-                      _vm._v(" "),
-                      _c("td", {
-                        domProps: { textContent: _vm._s(solicit.id) }
-                      }),
-                      _vm._v(" "),
-                      _c("td", {
-                        domProps: { textContent: _vm._s(solicit.nickname_orig) }
-                      }),
-                      _vm._v(" "),
-                      _c("td", {
                         domProps: { textContent: _vm._s(solicit.status_id) }
                       }),
                       _vm._v(" "),
                       _c("td", {
-                        domProps: { textContent: _vm._s(solicit.description) }
-                      })
+                        domProps: { textContent: _vm._s(solicit.observation) }
+                      }),
+                      _vm._v(" "),
+                      _c("td", {
+                        domProps: { textContent: _vm._s(solicit.nickname) }
+                      }),
+                      _vm._v(" "),
+                      _c("td", {
+                        domProps: { textContent: _vm._s(solicit.sede) }
+                      }),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "select",
+                          _vm._l(_vm.options, function(option) {
+                            return _c(
+                              "option",
+                              {
+                                domProps: {
+                                  selected: option.value === solicit.status_id
+                                }
+                              },
+                              [_vm._v(_vm._s(option.text))]
+                            )
+                          }),
+                          0
+                        ),
+                        _vm._v(" "),
+                        _c("span")
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-info btn-md",
+                            attrs: { href: "#", title: "Editar" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.showEditForm(_vm.info)
+                              }
+                            }
+                          },
+                          [_vm._v("Editar")]
+                        )
+                      ])
                     ])
                   }),
                   0
@@ -49495,20 +49565,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "modal-footer" }, [
-            _c("div", { staticClass: "col-md-8 offset-md-2 col-10 offset-1" }, [
-              _c("input", {
-                staticClass: "btn btn-primary",
-                attrs: { type: "submit", value: "Guardar" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.editModel($event)
-                  }
-                }
-              })
-            ])
-          ])
+          _vm._m(2)
         ])
       ])
     ]
@@ -49542,8 +49599,18 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Sede")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Estado")])
+        _c("th", [_vm._v("Estado")]),
+        _vm._v(" "),
+        _c("th")
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c("div", { staticClass: "col-md-8 offset-md-2 col-10 offset-1" })
     ])
   }
 ]
@@ -64498,9 +64565,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xamp\htdocs\jbustos\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! D:\xamp\htdocs\jbustos\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! D:\xamp\htdocs\jbustos\resources\sass\login.scss */"./resources/sass/login.scss");
+__webpack_require__(/*! C:\xampp\htdocs\jbustos\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\xampp\htdocs\jbustos\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\jbustos\resources\sass\login.scss */"./resources/sass/login.scss");
 
 
 /***/ })
