@@ -1,8 +1,9 @@
 <template>
+    <div>
+       	<h1 class="page-header" id="tittle">Modelos</h1>
 	<div id="nicksLogic" class="col-md-12 col-xs-12 col-lg-12">
 		<div class="row">
 	        <div class="col-md-12 col-xs-12 col-lg-12">
-	            <h1 class="page-header">Modelos</h1>
 	            <div class="float-right">
 	                <a href="#" class="btn btn-info btn-md" title="Nueva" v-on:click.prevent="showAddForm">Nueva Modelo</a>
                     <a href="#" class="btn btn-info btn-md" title="Subir Ventas" v-on:click.prevent="showUploadForm">Subir Ventas</a>
@@ -52,10 +53,11 @@
                 <model-ediForm :info="info" @updated="hideEditForm"></model-ediForm>
                 <sale-uploadForm></sale-uploadForm>  
                 <liquidate></liquidate> 
-                <model-requestModel :arrayRequest="arrayRequest" @click="hideRequest"></model-requestModel>                  
+                <!--<model-requestModel :arrayRequest="arrayRequest" @click="hideRequest"></model-requestModel>-->
 			</div>
 		</div>
 	</div>
+    </div>
 </template>
 <script>
     import axios from 'axios';

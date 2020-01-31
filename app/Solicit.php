@@ -11,7 +11,7 @@ class Solicit extends Model
     protected $table = 'requests';
 
     protected $fillable = [
-    	'nickname_orig',
+    'nickname_orig',
 		'nickname_suggest',
 		'observation',
 		'page_id',

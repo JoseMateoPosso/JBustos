@@ -92,6 +92,7 @@
                     <a href="{{ route('models') }}">Modelos</a>
                     <a href="{{ route('nicks') }}">Nicks</a>
                     <a href="{{ route('rules') }}">Reglas</a>
+                    <a href="{{ route('request') }}">Request</a>
                 </div>
                     <liquidate></liquidate>
             </div>

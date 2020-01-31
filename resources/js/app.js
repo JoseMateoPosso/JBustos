@@ -22,6 +22,7 @@ window.Vue = require('vue');
 Vue.component('sedes', require('./components/Sedes/Sedes.vue').default);
 Vue.component('pages', require('./components/Pages/Pages.vue').default);
 Vue.component('models', require('./components/models/Models.vue').default);
+Vue.component('request', require('./components/request/Request.vue').default);
 Vue.component('nicks', require('./components/Nicks/Nicks.vue').default);
 Vue.component('rules', require('./components/Rules/Rules.vue').default);
 Vue.component('liquidate', require('./components/Sales/Liquidate.vue').default);

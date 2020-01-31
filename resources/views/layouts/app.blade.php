@@ -60,6 +60,10 @@
                       <li class="nav-item">
                         <a class="nav-link" href="{{ route('liquidar') }}">Liquidar</a>
                       </li>
+                      
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{ route('request') }}">request</a>
+                      </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

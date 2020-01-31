@@ -24,7 +24,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(solicit, index) in arrayRequest" align="center">
+                <tr
+                  v-for="(solicit, index) in arrayRequest"
+                  v-bind:class="{ alert: solicit.type}"
+                  align="center"
+                >
                   <td v-text="solicit.status_id"></td>
                   <td v-text="solicit.observation"></td>
                   <td v-text="solicit.nickname"></td>
@@ -92,4 +96,5 @@ export default {
 #regVent {
   color: black;
 }
+
 </style>
