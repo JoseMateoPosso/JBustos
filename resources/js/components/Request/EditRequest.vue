@@ -1,5 +1,5 @@
 <template>
-  <div class="modal fade" id="modelEdit">
+  <div class="modal fade" id="modalEdit">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -56,12 +56,11 @@
 
               <div v-if="info.sede_id_orig" class="col-10 offset-1 col-md-10 offset-md-1">
                 <label for="sede_id_orig">Sede original</label>
-                <select name="sede_id_orig" class="form-control">
+                <select name="sede_id_orig" v-model="info.sede_id_orig" class="form-control">
                   <option
                     v-for="(sede, index) in arraySedes"
-                    :selected="sede.id === info.sede_id_orig"
-                    v-text="sede.name"
-                  ></option>
+                    :value="sede.id"
+                  >{{ sede.name }}</option>
                 </select>
               </div>
               <div v-if="info.sede_id_dest" class="col-10 offset-1 col-md-10 offset-md-1">
@@ -69,9 +68,9 @@
                 <select name="sede_id_dest" v-model="info.sede_id_dest" class="form-control">
                   <option
                     v-for="(sede, index) in arraySedes"
-                    :value="info.sede_id_dest"
-                    v-text="sede.name"
-                  ></option>
+                    :value="sede.id">
+                   {{sede.name}} 
+                    </option>
                 </select>
               </div>
               <div class="col-10 offset-1 col-md-10 offset-md-1">
@@ -177,7 +176,7 @@ export default {
         });
     },
     close: function() {
-      $("#modelEdit").modal("hide");
+      $("#modalEdit").modal("hide");
     }
   }
 };

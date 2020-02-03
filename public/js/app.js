@@ -5906,7 +5906,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -5986,7 +5985,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     close: function close() {
-      $("#modelEdit").modal("hide");
+      $("#modalEdit").modal("hide");
     }
   }
 });
@@ -6057,6 +6056,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6068,6 +6085,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       arrayRequest: [],
+      arraySedes: [],
       options: [{
         text: "Registrada",
         value: 6
@@ -6102,6 +6120,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.getRequestList();
+    this.getSedes();
   },
   methods: {
     getRequestList: function getRequestList() {
@@ -6114,9 +6133,19 @@ __webpack_require__.r(__webpack_exports__);
         toastr__WEBPACK_IMPORTED_MODULE_1___default.a.error("Error al cargar los datos.");
       });
     },
-    showEditForm: function showEditForm(info) {
-      console.log(info, "----info----");
+    getSedes: function getSedes() {
+      var _this = this;
 
+      var urlDetail = "sede";
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(urlDetail).then(function (response) {
+        _this.arraySedes = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+        toastr__WEBPACK_IMPORTED_MODULE_1___default.a.error("No se pudo cargar la información");
+      });
+    },
+    showEditForm: function showEditForm(info) {
+      //console.log(info, "----info----");
       var _this = this;
 
       _this.info.id = info.id ? info.id : "";
@@ -6128,13 +6157,20 @@ __webpack_require__.r(__webpack_exports__);
       _this.info.sede_id_dest = info.sede_id_dest ? info.sede_id_dest : "";
       _this.info.nick_id = info.nick_id ? info.nick_id : "";
       _this.info.status_id = info.status_id ? info.status_id : "";
-      $("#modelEdit").modal("show");
+      $("#modalEdit").modal("show");
+    },
+    showComment: function showComment(info) {
+      console.log(info, "----info----");
+
+      var _this = this;
+
+      _this.info.id = info.id ? info.id : "";
     },
     hideEditForm: function hideEditForm() {
-      $("#modelEdit").modal("hide");
+      $("#modalEdit").modal("hide");
     },
     close: function close() {
-      $("#modelEdit").modal("hide");
+      $("#modalEdit").modal("hide");
     }
   }
 });
@@ -11168,7 +11204,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#modelslogic {\r\n  color: black;\n}\n#regVent {\r\n  color: black;\n}\n.s{\r\n  background-color: rgba(255, 0, 0, 0.05) !important;\n}\n.u{\r\n  background-color: rgba(105, 255, 0, 0.05) !important;\n}\n.m{\r\n  background-color: rgba(0, 0, 0, 0.05);\n}\n.n{\r\n  background-color: rgba(0, 0, 0, 0.05);\n}\n.g{\r\n  background-color: rgba(0, 238, 255, 0.05) !important;\n}\n.r{\r\n  background-color: rgba(22, 255, 0, 0.05) !important;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n#modelslogic {\r\n  color: black;\n}\n#regVent {\r\n  color: black;\n}\n.s {\r\n  background-color: rgba(255, 0, 0, 0.05) !important;\n}\n.u {\r\n  background-color: rgba(105, 255, 0, 0.05) !important;\n}\n.m {\r\n  background-color: rgba(0, 0, 0, 0.05);\n}\n.n {\r\n  background-color: rgba(0, 0, 0, 0.05);\n}\n.g {\r\n  background-color: rgba(0, 238, 255, 0.05) !important;\n}\n.r {\r\n  background-color: rgba(22, 255, 0, 0.05) !important;\n}\nselect.sede_orig {\r\n  background-color: transparent;\r\n  border: none;\r\n  color: black;\n}\r\n", ""]);
 
 // exports
 
@@ -50096,7 +50132,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "modal fade", attrs: { id: "modelEdit" } }, [
+  return _c("div", { staticClass: "modal fade", attrs: { id: "modalEdit" } }, [
     _c("div", { staticClass: "modal-dialog" }, [
       _c("div", { staticClass: "modal-content" }, [
         _c("div", { staticClass: "modal-header" }, [
@@ -50268,16 +50304,42 @@ var render = function() {
                       _c(
                         "select",
                         {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.info.sede_id_orig,
+                              expression: "info.sede_id_orig"
+                            }
+                          ],
                           staticClass: "form-control",
-                          attrs: { name: "sede_id_orig" }
+                          attrs: { name: "sede_id_orig" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.info,
+                                "sede_id_orig",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
                         },
                         _vm._l(_vm.arraySedes, function(sede, index) {
-                          return _c("option", {
-                            domProps: {
-                              selected: sede.id === _vm.info.sede_id_orig,
-                              textContent: _vm._s(sede.name)
-                            }
-                          })
+                          return _c(
+                            "option",
+                            { domProps: { value: sede.id } },
+                            [_vm._v(_vm._s(sede.name))]
+                          )
                         }),
                         0
                       )
@@ -50328,12 +50390,17 @@ var render = function() {
                           }
                         },
                         _vm._l(_vm.arraySedes, function(sede, index) {
-                          return _c("option", {
-                            domProps: {
-                              value: _vm.info.sede_id_dest,
-                              textContent: _vm._s(sede.name)
-                            }
-                          })
+                          return _c(
+                            "option",
+                            { domProps: { value: sede.id } },
+                            [
+                              _vm._v(
+                                "\n                 " +
+                                  _vm._s(sede.name) +
+                                  " \n                  "
+                              )
+                            ]
+                          )
                         }),
                         0
                       )
@@ -50475,6 +50542,7 @@ var render = function() {
                   _c("td", {
                     domProps: { textContent: _vm._s(solicit.nickname_orig) }
                   }),
+                  _vm._v(" "),
                   _c("td", {
                     domProps: { textContent: _vm._s(solicit.nickname_suggest) }
                   }),
@@ -50487,11 +50555,51 @@ var render = function() {
                     domProps: { textContent: _vm._s(solicit.page_name) }
                   }),
                   _vm._v(" "),
+                  _c("td", [
+                    solicit.sede_id_orig
+                      ? _c(
+                          "select",
+                          { staticClass: "sede_orig", attrs: { disabled: "" } },
+                          _vm._l(_vm.arraySedes, function(sede, index) {
+                            return _c(
+                              "option",
+                              {
+                                domProps: {
+                                  selected: sede.id === solicit.sede_id_orig
+                                }
+                              },
+                              [_vm._v(_vm._s(sede.name))]
+                            )
+                          }),
+                          0
+                        )
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    solicit.sede_id_dest
+                      ? _c(
+                          "select",
+                          { staticClass: "sede_orig", attrs: { disabled: "" } },
+                          _vm._l(_vm.arraySedes, function(sede, index) {
+                            return _c(
+                              "option",
+                              {
+                                domProps: {
+                                  selected: sede.id === solicit.sede_id_dest
+                                }
+                              },
+                              [_vm._v(_vm._s(sede.name))]
+                            )
+                          }),
+                          0
+                        )
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
                   _c("td", {
                     domProps: { textContent: _vm._s(solicit.nickname) }
                   }),
-                  _vm._v(" "),
-                  _c("td", { domProps: { textContent: _vm._s(solicit.sede) } }),
                   _vm._v(" "),
                   _c("td", {
                     domProps: { textContent: _vm._s(solicit.description) }
@@ -50511,6 +50619,23 @@ var render = function() {
                         }
                       },
                       [_vm._v("Editar")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-info btn-md",
+                        attrs: { href: "" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.showComment(solicit)
+                          }
+                        }
+                      },
+                      [_vm._v("Comentario")]
                     )
                   ])
                 ]
@@ -50546,9 +50671,11 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Pagina")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Nick")]),
+        _c("th", [_vm._v("Sede original")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Sede")]),
+        _c("th", [_vm._v("Sede destino")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nick")]),
         _vm._v(" "),
         _c("th", [_vm._v("Estado")]),
         _vm._v(" "),

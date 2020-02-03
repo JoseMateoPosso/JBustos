@@ -10,25 +10,38 @@
             <th>Nuevo nombre</th>
             <th>Observación</th>
             <th>Pagina</th>
+            <th>Sede original</th>
+            <th>Sede destino</th>
             <th>Nick</th>
-            <th>Sede</th>
             <th>Estado</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr
-            v-for="(solicit, index) in arrayRequest"
-            v-bind:class="solicit.type"
-            align="center"
-          >
+          <tr v-for="(solicit, index) in arrayRequest" v-bind:class="solicit.type" align="center">
             <td v-text="solicit.id"></td>
-            <td v-text="solicit.nickname_orig">
+            <td v-text="solicit.nickname_orig"></td>
             <td v-text="solicit.nickname_suggest"></td>
             <td v-text="solicit.observation"></td>
             <td v-text="solicit.page_name"></td>
+            <td>
+              <select v-if="solicit.sede_id_orig" class="sede_orig" disabled>
+                <option
+                  v-for="(sede, index) in arraySedes"
+                  :selected="sede.id === solicit.sede_id_orig"
+                >{{sede.name}}</option>
+              </select>
+            </td>
+            <td>
+              <select v-if="solicit.sede_id_dest" class="sede_orig" disabled>
+                <option
+                  v-for="(sede, index) in arraySedes"
+                  :selected="sede.id === solicit.sede_id_dest"
+                >{{sede.name}}</option>
+              </select>
+            </td>
             <td v-text="solicit.nickname"></td>
-            <td v-text="solicit.sede"></td>
+
             <td v-text="solicit.description"></td>
             <td>
               <a
@@ -37,6 +50,11 @@
                 title="Editar"
                 v-on:click.prevent="showEditForm(solicit)"
               >Editar</a>
+            </td>
+            <td>
+              <a class="btn btn-info btn-md" 
+              v-on:click.prevent="showComment(solicit)"
+              href="">Comentario</a>
             </td>
           </tr>
         </tbody>
@@ -59,6 +77,7 @@ export default {
   data() {
     return {
       arrayRequest: [],
+      arraySedes: [],
       options: [
         { text: "Registrada", value: 6 },
         { text: "En proceso", value: 7 },
@@ -82,6 +101,7 @@ export default {
   },
   created: function() {
     this.getRequestList();
+    this.getSedes();
   },
   methods: {
     getRequestList: function() {
@@ -96,28 +116,51 @@ export default {
           toastr.error("Error al cargar los datos.");
         });
     },
+    getSedes: function() {
+      var _this = this;
+      var urlDetail = "sede";
+      axios
+        .get(urlDetail)
+        .then(response => {
+          _this.arraySedes = response.data;
+        })
+        .catch(function(error) {
+          console.log(error);
+          toastr.error("No se pudo cargar la información");
+        });
+    },
     showEditForm(info) {
+      //console.log(info, "----info----");
+
+      var _this = this;
+
+      _this.info.id = info.id ? info.id : "";
+      _this.info.nickname_orig = info.nickname_orig ? info.nickname_orig : "";
+      _this.info.nickname_suggest = info.nickname_suggest
+        ? info.nickname_suggest
+        : "";
+      _this.info.observation = info.observation ? info.observation : "";
+      _this.info.page_id = info.page_id ? info.page_id : "";
+      _this.info.sede_id_orig = info.sede_id_orig ? info.sede_id_orig : "";
+      _this.info.sede_id_dest = info.sede_id_dest ? info.sede_id_dest : "";
+      _this.info.nick_id = info.nick_id ? info.nick_id : "";
+      _this.info.status_id = info.status_id ? info.status_id : "";
+
+      $("#modalEdit").modal("show");
+    },
+    showComment(info) {
       console.log(info, "----info----");
 
       var _this = this;
 
       _this.info.id = info.id ? info.id : "";
-      _this.info.nickname_orig = info.nickname_orig ? info.nickname_orig: "";
-      _this.info.nickname_suggest = info.nickname_suggest ? info.nickname_suggest : "";
-      _this.info.observation = info.observation ? info.observation : "";
-      _this.info.page_id = info.page_id ? info.page_id : "";
-      _this.info.sede_id_orig = info.sede_id_orig ? info.sede_id_orig : "";
-      _this.info.sede_id_dest = info.sede_id_dest ? info.sede_id_dest : "";
-      _this.info.nick_id = info.nick_id? info.nick_id: "";
-      _this.info.status_id = info.status_id ? info.status_id : "";
 
-      $("#modelEdit").modal("show");
     },
     hideEditForm: () => {
-      $("#modelEdit").modal("hide");
+      $("#modalEdit").modal("hide");
     },
     close: function() {
-      $("#modelEdit").modal("hide");
+      $("#modalEdit").modal("hide");
     }
   }
 };
@@ -131,23 +174,28 @@ export default {
   color: black;
 }
 
-.s{
+.s {
   background-color: rgba(255, 0, 0, 0.05) !important;
 }
-.u{
+.u {
   background-color: rgba(105, 255, 0, 0.05) !important;
 }
-.m{
+.m {
   background-color: rgba(0, 0, 0, 0.05);
 }
-.n{
+.n {
   background-color: rgba(0, 0, 0, 0.05);
 }
-.g{
+.g {
   background-color: rgba(0, 238, 255, 0.05) !important;
 }
-.r{
+.r {
   background-color: rgba(22, 255, 0, 0.05) !important;
 }
 
+select.sede_orig {
+  background-color: transparent;
+  border: none;
+  color: black;
+}
 </style>
