@@ -35,8 +35,20 @@ class RequestCommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $basicInformation = RequestComment::where('request_id', $request['request_id'])->get();
+
+        return $basicInformation;
+
     }
+
+    
+    public function commentListbyc(Request $request)
+    {
+      $basicInformation = RequestComment::find($request['request_id']);
+
+      return $basicInformation;
+    }
+
 
     /**
      * Display the specified resource.

@@ -22,6 +22,7 @@ class RequestComment extends Model
     {
         return $this->belongsTo(Statuses::class, 'status_id', 'id');
     }
+    /*
 
     public function created()
     {
@@ -37,4 +38,5 @@ class RequestComment extends Model
     {
         return $this->belongsTo(Request::class, 'request_id', 'id');
     }
+    */
 }

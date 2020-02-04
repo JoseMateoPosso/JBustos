@@ -84,4 +84,5 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/ilquidarT', 'SalesConsolidateController@Liquidar')->name('liquidar');
 
 	Route::resource('requestList', 'SolicitController', ['except' => ['show']]);
+	Route::post('commentListbyc', 'RequestCommentController@commentListbyc');
 });

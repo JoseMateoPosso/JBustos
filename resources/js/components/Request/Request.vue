@@ -60,6 +60,7 @@
         </tbody>
       </table>
       <model-ediForm :info="info" @updated="hideEditForm"></model-ediForm>
+      <model-comment :info="info" @updated="hideCommentModal"></model-comment>
     </div>
   </div>
 </template>
@@ -69,10 +70,12 @@ import axios from "axios";
 import toastr from "toastr";
 import swal from "sweetalert";
 import EditRequest from "./EditRequest";
+import Comment from "./Comment"
 
 export default {
   components: {
-    "model-ediForm": EditRequest
+    "model-ediForm": EditRequest,
+    "model-comment": Comment
   },
   data() {
     return {
@@ -149,15 +152,18 @@ export default {
       $("#modalEdit").modal("show");
     },
     showComment(info) {
-      console.log(info, "----info----");
+      //console.log(info, "----info----");
 
       var _this = this;
-
       _this.info.id = info.id ? info.id : "";
+      $("#modalComment").modal("show");
 
     },
     hideEditForm: () => {
       $("#modalEdit").modal("hide");
+    },
+    hideCommentModal: () => {
+      $("#modalComment").modal("hide");
     },
     close: function() {
       $("#modalEdit").modal("hide");
