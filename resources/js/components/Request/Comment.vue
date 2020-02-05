@@ -12,7 +12,7 @@
         </div>
         <div class="modal-body row">
           <div>
-            <label for>this modal {{arrayRequestComment}}</label>
+            <label for>this modal {{data_info.comment}} </label>
           </div>
         </div>
         <div class="modal-footer">
@@ -28,7 +28,7 @@ import toastr from "toastr";
 import swal from "sweetalert";
 
 export default {
-  props: ["info"],
+  props: ["data_info"],
   data() {
     return {
       arrayRequestComment: []
@@ -36,22 +36,8 @@ export default {
   },
   created: function() {
     var _this = this;
-     _this.getComments();
   },
   methods: {
-    getComments: function() {
-      var _this = this;
-      var urlDetail = "commentListbyc";
-      axios
-        .post(urlDetail, { request_id: 1 })
-        .then(response => {
-          _this.arrayRequestComment = response.data;
-        })
-        .catch(function(error) {
-          console.log(error);
-          toastr.error("No se pudo cargar la información");
-        });
-    },
     close: function() {
       $("#modalComment").modal("hide");
     }

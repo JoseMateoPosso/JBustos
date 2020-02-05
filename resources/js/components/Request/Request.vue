@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="page-header" id="tittle">Request</h1>
+    <h1 class="page-header" id="tittle">Request {{data_info}}</h1>
     <div class="col-md-12">
       <table class="table table-striped">
         <thead>
@@ -60,7 +60,7 @@
         </tbody>
       </table>
       <model-ediForm :info="info" @updated="hideEditForm"></model-ediForm>
-      <model-comment :info="info" @updated="hideCommentModal"></model-comment>
+      <model-comment :data_info="data_info" @updated="hideCommentModal"></model-comment>
     </div>
   </div>
 </template>
@@ -80,6 +80,7 @@ export default {
   data() {
     return {
       arrayRequest: [],
+      arrayRequestComment: [],
       arraySedes: [],
       options: [
         { text: "Registrada", value: 6 },
@@ -99,6 +100,11 @@ export default {
         sede_id_dest: "",
         nick_id: "",
         status_id: ""
+      },
+      data_info: {
+        id: "",
+        comment: "",
+        request_id: "",
       }
     };
   },
@@ -151,11 +157,30 @@ export default {
 
       $("#modalEdit").modal("show");
     },
-    showComment(info) {
-      //console.log(info, "----info----");
+    showComment(data) {
+
+      //var _this = this;
+      //_this.info.id = info.id ? info.id : "";
 
       var _this = this;
-      _this.info.id = info.id ? info.id : "";
+      console.log(data,'data')
+      var urlDetail = "commentListbyc";
+      axios
+        .post(urlDetail, { request_id: data.id })
+        .then(response => {
+          _this.data_info = {
+              id              : response.data.id,
+              comment    : response.data.comment,
+              request_id     : response.data.request_id,
+          };
+        })
+        .catch(function(error) {
+          console.log(error);
+          toastr.error("No se pudo cargar la información");
+        });
+
+        //console.log(_this.arrayRequestComment,'arrayRequestComment');
+
       $("#modalComment").modal("show");
 
     },

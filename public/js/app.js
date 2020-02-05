@@ -5833,7 +5833,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["info"],
+  props: ["data_info"],
   data: function data() {
     return {
       arrayRequestComment: []
@@ -5841,23 +5841,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     var _this = this;
-
-    _this.getComments();
   },
   methods: {
-    getComments: function getComments() {
-      var _this = this;
-
-      var urlDetail = "commentListbyc";
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(urlDetail, {
-        request_id: 1
-      }).then(function (response) {
-        _this.arrayRequestComment = response.data;
-      })["catch"](function (error) {
-        console.log(error);
-        toastr__WEBPACK_IMPORTED_MODULE_1___default.a.error("No se pudo cargar la información");
-      });
-    },
     close: function close() {
       $("#modalComment").modal("hide");
     }
@@ -6165,6 +6150,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       arrayRequest: [],
+      arrayRequestComment: [],
       arraySedes: [],
       options: [{
         text: "Registrada",
@@ -6195,6 +6181,11 @@ __webpack_require__.r(__webpack_exports__);
         sede_id_dest: "",
         nick_id: "",
         status_id: ""
+      },
+      data_info: {
+        id: "",
+        comment: "",
+        request_id: ""
       }
     };
   },
@@ -6239,11 +6230,26 @@ __webpack_require__.r(__webpack_exports__);
       _this.info.status_id = info.status_id ? info.status_id : "";
       $("#modalEdit").modal("show");
     },
-    showComment: function showComment(info) {
-      //console.log(info, "----info----");
+    showComment: function showComment(data) {
+      //var _this = this;
+      //_this.info.id = info.id ? info.id : "";
       var _this = this;
 
-      _this.info.id = info.id ? info.id : "";
+      console.log(data, 'data');
+      var urlDetail = "commentListbyc";
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(urlDetail, {
+        request_id: data.id
+      }).then(function (response) {
+        _this.data_info = {
+          id: response.data.id,
+          comment: response.data.comment,
+          request_id: response.data.request_id
+        };
+      })["catch"](function (error) {
+        console.log(error);
+        toastr__WEBPACK_IMPORTED_MODULE_1___default.a.error("No se pudo cargar la información");
+      }); //console.log(_this.arrayRequestComment,'arrayRequestComment');
+
       $("#modalComment").modal("show");
     },
     hideEditForm: function hideEditForm() {
@@ -50287,7 +50293,7 @@ var render = function() {
           _c("div", { staticClass: "modal-body row" }, [
             _c("div", [
               _c("label", { attrs: { for: "" } }, [
-                _vm._v("this modal " + _vm._s(_vm.arrayRequestComment))
+                _vm._v("this modal " + _vm._s(_vm.data_info.comment) + " ")
               ])
             ])
           ]),
@@ -50730,7 +50736,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("h1", { staticClass: "page-header", attrs: { id: "tittle" } }, [
-      _vm._v("Request")
+      _vm._v("Request " + _vm._s(_vm.data_info))
     ]),
     _vm._v(" "),
     _c(
@@ -50861,7 +50867,7 @@ var render = function() {
         }),
         _vm._v(" "),
         _c("model-comment", {
-          attrs: { info: _vm.info },
+          attrs: { data_info: _vm.data_info },
           on: { updated: _vm.hideCommentModal }
         })
       ],
