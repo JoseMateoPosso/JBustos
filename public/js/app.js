@@ -5829,6 +5829,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -6137,6 +6139,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -6182,11 +6185,7 @@ __webpack_require__.r(__webpack_exports__);
         nick_id: "",
         status_id: ""
       },
-      data_info: {
-        id: "",
-        comment: "",
-        request_id: ""
-      }
+      data_info: []
     };
   },
   created: function created() {
@@ -6240,11 +6239,7 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(urlDetail, {
         request_id: data.id
       }).then(function (response) {
-        _this.data_info = {
-          id: response.data.id,
-          comment: response.data.comment,
-          request_id: response.data.request_id
-        };
+        _this.data_info = response.data;
       })["catch"](function (error) {
         console.log(error);
         toastr__WEBPACK_IMPORTED_MODULE_1___default.a.error("No se pudo cargar la información");
@@ -50290,13 +50285,22 @@ var render = function() {
             _vm._m(0)
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "modal-body row" }, [
-            _c("div", [
-              _c("label", { attrs: { for: "" } }, [
-                _vm._v("this modal " + _vm._s(_vm.data_info.comment) + " ")
+          _c(
+            "div",
+            { staticClass: "modal-body row" },
+            _vm._l(_vm.data_info, function(comments, index) {
+              return _c("div", [
+                _c("label", [
+                  _vm._v(
+                    "\n               " +
+                      _vm._s(comments.comment) +
+                      "\n             "
+                  )
+                ])
               ])
-            ])
-          ]),
+            }),
+            0
+          ),
           _vm._v(" "),
           _vm._m(1)
         ])
@@ -50736,7 +50740,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("h1", { staticClass: "page-header", attrs: { id: "tittle" } }, [
-      _vm._v("Request " + _vm._s(_vm.data_info))
+      _vm._v("Request ")
     ]),
     _vm._v(" "),
     _c(

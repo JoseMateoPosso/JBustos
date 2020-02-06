@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1 class="page-header" id="tittle">Request {{data_info}}</h1>
+    <!--<h1 class="page-header" id="tittle">Request {{data_info}}</h1>!-->
+   <h1 class="page-header" id="tittle">Request </h1>
     <div class="col-md-12">
       <table class="table table-striped">
         <thead>
@@ -101,11 +102,7 @@ export default {
         nick_id: "",
         status_id: ""
       },
-      data_info: {
-        id: "",
-        comment: "",
-        request_id: "",
-      }
+      data_info: []
     };
   },
   created: function() {
@@ -168,11 +165,7 @@ export default {
       axios
         .post(urlDetail, { request_id: data.id })
         .then(response => {
-          _this.data_info = {
-              id              : response.data.id,
-              comment    : response.data.comment,
-              request_id     : response.data.request_id,
-          };
+          _this.data_info = response.data;
         })
         .catch(function(error) {
           console.log(error);

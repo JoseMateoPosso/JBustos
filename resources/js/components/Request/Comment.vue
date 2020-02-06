@@ -11,8 +11,10 @@
           </div>
         </div>
         <div class="modal-body row">
-          <div>
-            <label for>this modal {{data_info.comment}} </label>
+          <div  v-for="(comments, index) in data_info">
+               <label>
+                 {{comments.comment}}
+               </label>
           </div>
         </div>
         <div class="modal-footer">

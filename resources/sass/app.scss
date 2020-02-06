@@ -8,3 +8,29 @@
 @import 'bootstrappMaterial/bootstrap-material-design';
 
 @import 'toastr';
+
+.bg-white {
+    background-image: linear-gradient(#5d4863, #671aff);
+    padding: 3em;
+    border-top:4px solid #b6aeae;
+    border-bottom: 2px solid #6266f1;
+}
+
+.navbar-light .navbar-nav .nav-link,.navbar-light .navbar-brand {
+    color: white !important;
+    font-weight: 800;
+}
+
+h1#tittle,h1 {
+    padding: 1em;
+    background-color: #d2d3ff;
+    margin-top: -.7em;
+    font-weight: 800;
+}
+
+.btn.btn-info, .btn-info.custom-file-control::before {
+    color: #5a93ad;
+    background-color: transparent;
+    border: 1px solid #a3e8ff;
+    border-radius: 6px;
+}

@@ -107,4 +107,10 @@
         </main>
     </div>
 </body>
+<style>
+
+nav{
+    background-color: blue !important;
+}
+</style>
 </html>
